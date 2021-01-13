@@ -4,9 +4,9 @@ public class GameOfLIfe {
     public static void main(String[] args) {
         // dimensions of field
         int yAxis = 12;
-        int xAxis = 39;
+        int xAxis = 36;
         // max iteration count
-        int zAxis = 160;
+        int zAxis = 100;
         
         // make empty prime array
         char[][] field = new char[yAxis][xAxis];
@@ -119,10 +119,8 @@ public class GameOfLIfe {
                     if (checkCount == yAxis * xAxis) {   
                         firstEqual = z;
                         if (check - z == 1) {
-                            System.out.println("Becomes static at iteration nr." + z);
                             secondEqual = z;
                         } else {
-                            System.out.println("Loop of " + (check - 1 - z) + " starting at iteration " + (z));
                             secondEqual = check - 1;
                         }                    
                         equal = true;
@@ -137,7 +135,7 @@ public class GameOfLIfe {
         }
         System.out.println("");
 
-        // end of rendering
+        // remanageing characters
         for (int z = firstEqual; z <= secondEqual; z++) {
             for (int y = 0; y < yAxis; y++) {
                 for (int x = 0; x < xAxis; x++) {
@@ -146,10 +144,16 @@ public class GameOfLIfe {
                 }
             }
         }
+        
+        // checks if loop or static was found
         if (firstEqual == 0 && secondEqual == 0) {
             return;
         }
+        
+        // if static
         if (secondEqual == firstEqual) {
+            
+            // prints static
             for(int y = 0; y < yAxis; y++) {
                 for(int i = 0; i < 3; i++) {
                     System.out.println("");
@@ -162,8 +166,12 @@ public class GameOfLIfe {
             }
             System.out.println("");
             System.out.println("");
-            System.out.println("Becomes static at iteration nr." + (firstEqual - 1));
+            System.out.println("Becomes static at iteration nr." + (firstEqual + 1));
+        
+        // if loop    
         } else {
+            
+            // prints loop for 3 times
             for (int l = 0; l < 3; l++) {
                 for (int z = firstEqual; z <= secondEqual; z++) {
                     System.out.println("");
